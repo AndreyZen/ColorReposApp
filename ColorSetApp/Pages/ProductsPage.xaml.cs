@@ -46,6 +46,7 @@ namespace ColorSetApp.Pages
             Product product = (sender as Button).DataContext as Product;
             product.IsActual = !product.IsActual;
             App.Context.SaveChanges();
+            UpdateLvSource();
         }
 
         private void UpdateLvSource()
@@ -81,20 +82,20 @@ namespace ColorSetApp.Pages
         {
             if (new AddEditProductPage((sender as Button).DataContext as Product).ShowDialog() == true)
             {
-                //ToDo Update
+                UpdateLvSource();
             }
         }
 
         private void BtnAddBuy_Click(object sender, RoutedEventArgs e)
         {
-
+            //ToDo: Добавление продукта в корзину
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (new AddEditProductPage().ShowDialog() == true)
             {
-                //ToDo Update
+                UpdateLvSource();
             }
         }
 
@@ -109,11 +110,6 @@ namespace ColorSetApp.Pages
         {
             Grid grid = sender as Grid;
             (grid.Children[1] as Image).Visibility = Visibility.Visible;
-        }
-
-        private void Page_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void CBxCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
