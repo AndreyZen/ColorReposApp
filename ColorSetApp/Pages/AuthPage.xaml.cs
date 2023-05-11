@@ -35,10 +35,7 @@ namespace ColorSetApp.Pages
                 if (await App.Context.User.FindAsync(TbCode.Text) is User user)
                 {
                     App.CurrentUser = user;
-                    if (user.IsAdmin)
-                        NavigationService.Navigate(new UsersPage());
-                    else
-                        NavigationService.Navigate(new ProductsPage());
+                    NavigationService.Navigate(new ProductsPage());
                 }
                 else
                     MessageBox.Show("Пользователя не существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);

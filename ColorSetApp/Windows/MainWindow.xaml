@@ -14,14 +14,16 @@
 
         <DockPanel Visibility="Collapsed" x:Name="DpUpBar" Margin="10 5">
             <TextBlock x:Name="TbUserName" VerticalAlignment="Center" DockPanel.Dock="Left" FontFamily="Arial Black"/>
-            <Button Content="Назад" x:Name="BtnBack" Click="BtnBack_Click" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+            <Button Content="Выход" x:Name="BtnBack" Click="BtnBack_Click" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0"/>
             <Button Content="Пользователи" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
-                    Padding="10 0"/>
+                    Padding="10 0" x:Name="BtnUsers" Click="BtnUsers_Click"/>
+            <Button Content="Продукты" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                    Padding="10 0" x:Name="BtnProducts" Click="BtnProducts_Click"/>
             <Button Content="Подбор" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0" x:Name="BtnSelection" Click="BtnSelection_Click"/>
             <Button Content="Корзина" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
-                    Padding="10 0"/>
+                    Padding="10 0" x:Name="BtnProductBox" Click="BtnProductBox_Click"/>
         </DockPanel>
 
         <Frame Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"/>

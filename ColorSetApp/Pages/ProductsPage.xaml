@@ -60,7 +60,7 @@
                                     <Image.Source>
                                         <Binding Path="PreviewPhoto">
                                             <Binding.TargetNullValue>
-                                                <BitmapImage UriSource="../res/no_photo.png"/>
+                                                <ImageSource>../res/no_photo.png</ImageSource>
                                             </Binding.TargetNullValue>
                                         </Binding>
                                     </Image.Source>

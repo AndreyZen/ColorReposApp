@@ -36,18 +36,34 @@ namespace ColorSetApp.Windows
             else
             {
                 TbUserName.Text = App.CurrentUser.FullName;
+                BtnUsers.Visibility = App.CurrentUser.IsAdmin ? Visibility.Visible : Visibility.Collapsed;
                 DpUpBar.Visibility = Visibility.Visible;
             }
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.GoBack();
+            MainFrame.Navigate(new AuthPage());
         }
 
         private void BtnSelection_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ColorSelectionPage());
+        }
+
+        private void BtnUsers_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new UsersPage());
+        }
+
+        private void BtnProducts_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ProductsPage());
+        }
+
+        private void BtnProductBox_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ProductboxPage());
         }
     }
 }
