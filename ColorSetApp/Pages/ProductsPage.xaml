@@ -51,12 +51,14 @@
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <Grid Margin="5">
+                            <Grid Margin="5" MouseEnter="Grid_MouseEnter" MouseMove="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MouseEnter="ColumnDefinition_MouseEnter"/>
-                                    <ColumnDefinition MouseEnter="ColumnDefinition_MouseEnter1" MouseLeave="ColumnDefinition_MouseLeave"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.ColumnSpan="2" Width="200" Height="200">
+                                
+                                <Image Grid.ColumnSpan="2" Stretch="Fill" Source="{Binding TexturePhoto}" Width="200" Height="200"/>
+                                <Image Grid.ColumnSpan="2" Stretch="Fill" Width="200" Height="200">
                                     <Image.Source>
                                         <Binding Path="PreviewPhoto">
                                             <Binding.TargetNullValue>
@@ -65,13 +67,12 @@
                                         </Binding>
                                     </Image.Source>
                                 </Image>
-                                <Image Grid.ColumnSpan="2" Source="{Binding TexturePhoto}" Width="200" Height="200"/>
                             </Grid>
                             <StackPanel Grid.Column="1" Margin="5">
                                 <TextBlock Margin="5">
                                     <Run Text="{Binding Name}" FontSize="20" FontFamily="Arial Black"/>
                                     <Run Text="    "/>
-                                    <Run Text="{Binding Volume, StringFormat={}{0:N3} кг}" FontSize="16" FontFamily="Arial Black"/>
+                                    <Run Text="{Binding Volume, StringFormat={}{0:N3} кг, TargetNullValue={}}" FontSize="16" FontFamily="Arial Black"/>
                                 </TextBlock>
                                 <TextBlock Text="{Binding Description}" FontSize="12" FontFamily="Arial Narrow"/>
                             </StackPanel>

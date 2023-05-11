@@ -1,4 +1,5 @@
 ﻿using ColorSetApp.Entities;
+using ColorSetApp.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,21 +27,6 @@ namespace ColorSetApp.Pages
             InitializeComponent();
         }
 
-        private void ColumnDefinition_MouseEnter(object sender, MouseEventArgs e)
-        {
-            var a = (sender as ColumnDefinition).Parent as Grid;
-        }
-
-        private void ColumnDefinition_MouseLeave(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void ColumnDefinition_MouseEnter1(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LVProducts.ItemsSource = App.Context.Product.ToList();
@@ -56,7 +42,10 @@ namespace ColorSetApp.Pages
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (new AddEditProductPage((sender as Button).DataContext as Product).ShowDialog() == true)
+            {
+                //ToDo Update
+            }
         }
 
         private void BtnAddBuy_Click(object sender, RoutedEventArgs e)
@@ -66,7 +55,23 @@ namespace ColorSetApp.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (new AddEditProductPage().ShowDialog() == true)
+            {
+                //ToDo Update
+            }
+        }
 
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Grid grid = sender as Grid;
+            Point point = e.GetPosition(grid);
+            (grid.Children[1] as Image).Visibility = point.X > grid.ActualWidth / 2 ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Grid grid = sender as Grid;
+            (grid.Children[1] as Image).Visibility = Visibility.Visible;
         }
     }
 }
