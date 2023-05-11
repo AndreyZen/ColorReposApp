@@ -1,0 +1,29 @@
+﻿<Window x:Class="ColorSetApp.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorSetApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" FontSize="16" FontFamily="Arial Narrow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Visibility="Collapsed" x:Name="DpUpBar" Margin="10 5">
+            <TextBlock x:Name="TbUserName" VerticalAlignment="Center" DockPanel.Dock="Left" FontFamily="Arial Black"/>
+            <Button Content="Назад" x:Name="BtnBack" Click="BtnBack_Click" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                    Padding="10 0"/>
+            <Button Content="Пользователи" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                    Padding="10 0"/>
+            <Button Content="Подбор" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                    Padding="10 0"/>
+            <Button Content="Корзина" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                    Padding="10 0"/>
+        </DockPanel>
+
+        <Frame Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"/>
+    </Grid>
+</Window>
