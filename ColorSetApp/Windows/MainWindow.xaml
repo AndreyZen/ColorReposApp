@@ -19,7 +19,7 @@
             <Button Content="Пользователи" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0"/>
             <Button Content="Подбор" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
-                    Padding="10 0"/>
+                    Padding="10 0" x:Name="BtnSelection" Click="BtnSelection_Click"/>
             <Button Content="Корзина" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0"/>
         </DockPanel>

@@ -44,5 +44,10 @@ namespace ColorSetApp.Windows
         {
             MainFrame.GoBack();
         }
+
+        private void BtnSelection_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ColorSelectionPage());
+        }
     }
 }

@@ -24,5 +24,10 @@ namespace ColorSetApp.Pages
         {
             InitializeComponent();
         }
+
+        private void UpdateListData()
+        {
+
+        }
     }
 }
