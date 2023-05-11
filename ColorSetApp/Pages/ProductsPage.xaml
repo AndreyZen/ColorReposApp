@@ -51,12 +51,14 @@
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Grid Margin="5">
+                            <Grid Margin="5" MouseEnter="Grid_MouseEnter" MouseMove="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MouseEnter="ColumnDefinition_MouseEnter"/>
-                                    <ColumnDefinition MouseEnter="ColumnDefinition_MouseEnter1" MouseLeave="ColumnDefinition_MouseLeave"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.ColumnSpan="2" Width="200" Height="200">
+                                
+                                <Image Grid.ColumnSpan="2" Stretch="Fill" Source="{Binding TexturePhoto}" Width="200" Height="200"/>
+                                <Image Grid.ColumnSpan="2" Stretch="Fill" Width="200" Height="200">
                                     <Image.Source>
                                         <Binding Path="PreviewPhoto">
                                             <Binding.TargetNullValue>
@@ -65,7 +67,6 @@
                                         </Binding>
                                     </Image.Source>
                                 </Image>
-                                <Image Grid.ColumnSpan="2" Source="{Binding TexturePhoto}" Width="200" Height="200"/>
                             </Grid>
                             <DockPanel Grid.Column="1" Margin="5" VerticalAlignment="Center">
                                 <TextBlock Margin="5" TextWrapping="Wrap" TextAlignment="Justify" DockPanel.Dock="Top">

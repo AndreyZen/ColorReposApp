@@ -5,8 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorSetApp.Windows"
         mc:Ignorable="d"
-        Title="AddEditProductPage" Height="450" Width="800">
+        Title="AddEditProductPage" Height="450" Width="600"  MinHeight="450" MinWidth="600" FontFamily="Arial Narrow" FontSize="14" Loaded="Window_Loaded">
     <Grid>
-        
+        <Viewbox>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                        <TextBlock Text="Название: " VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Name,Mode=TwoWay}" Width="150" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                        <TextBlock Text="Описание: " VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Description,Mode=TwoWay}" Width="150" Height="150" VerticalContentAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                        <TextBlock Text="Категория: " VerticalAlignment="Center"/>
+                        <ComboBox x:Name="CBxCategory" SelectedItem="{Binding Category,Mode=TwoWay}" Width="150" VerticalContentAlignment="Center"
+                               DisplayMemberPath="Name"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                        <TextBlock Text="Производитель: " VerticalAlignment="Center"/>
+                        <ComboBox x:Name="CBxmanufacturer" SelectedItem="{Binding Manufacturer,Mode=TwoWay}" Width="150" VerticalContentAlignment="Center"
+                              IsEditable="True" DisplayMemberPath="Name"/>
+                    </StackPanel>
+                    <StackPanel ToolTip="Цена в рублях" Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                        <TextBlock Text="Цена: " VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Price, StringFormat=C2,ConverterCulture=Ru-ru,Mode=TwoWay}" Width="150" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel ToolTip="Масса нетто в кг в одной упаковке (необезательное к заполнению поле в некоторых категориях)" Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                        <TextBlock Text="Вес: " VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Volume, StringFormat=N3,Mode=TwoWay}" Width="150" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel ToolTip="Расход кг на кв. м (необезательное к заполнению поле в некоторых категориях)" Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                        <TextBlock Text="Расход: " VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Expenditure, StringFormat=N3,Mode=TwoWay}" Width="150" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                    <Button x:Name="BtnSave" Click="BtnSave_Click" Width="150" HorizontalAlignment="Right" Content="Сохранить" Margin="5"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Фото товара:" Margin="5"/>
+                    <Image MouseDown="ImgPreview_MouseDown" ToolTip="Нажмите, чтобы изменить фото" x:Name="ImgPreview" Margin="5" Height="150" Width="150">
+                        <Image.Source>
+                            <Binding>
+                                <Binding.TargetNullValue>
+                                    <BitmapImage UriSource="../res/selectphoto.png"/>
+                                </Binding.TargetNullValue>
+                            </Binding>
+                        </Image.Source>
+                    </Image>
+                    <TextBlock Text="Фото текстуры:" Margin="5"/>
+                    <Image MouseDown="ImgTexture_MouseDown" ToolTip="Нажмите, чтобы изменить фото" x:Name="ImgTexture" Margin="5" Height="150" Width="150">
+                        <Image.Source>
+                            <Binding>
+                                <Binding.TargetNullValue>
+                                    <BitmapImage UriSource="../res/selectphoto.png"/>
+                                </Binding.TargetNullValue>
+                            </Binding>
+                        </Image.Source>
+                    </Image>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
     </Grid>
 </Window>
