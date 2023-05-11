@@ -16,17 +16,17 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Поиск:" HorizontalAlignment="Center" VerticalAlignment="Center"
                        Margin="5" FontSize="14"/>
-            <TextBox Width="150" VerticalContentAlignment="Center"  Margin="5 0" x:Name="TBxSearch"/>
-            <ComboBox Width="150"  Margin="5 0"  VerticalContentAlignment="Center" x:Name="CBxCategory"/>
-            <ComboBox Width="150"  Margin="5 0"  VerticalContentAlignment="Center" x:Name="CBxManufacturer"/>
-            <ComboBox Width="150"  Margin="5 0"  VerticalContentAlignment="Center" x:Name="CBxSort">
+            <TextBox TextChanged="TBxSearch_TextChanged" Width="150" VerticalContentAlignment="Center"  Margin="5 0" x:Name="TBxSearch"/>
+            <ComboBox DisplayMemberPath="Name" SelectionChanged="CBxCategory_SelectionChanged" SelectedIndex="0" Width="150"  Margin="5 0"  VerticalContentAlignment="Center" x:Name="CBxCategory"/>
+            <ComboBox DisplayMemberPath="Name" SelectionChanged="CBxCategory_SelectionChanged" SelectedIndex="0" Width="150"  Margin="5 0"  VerticalContentAlignment="Center" x:Name="CBxManufacturer"/>
+            <ComboBox SelectionChanged="CBxCategory_SelectionChanged" SelectedIndex="0" Width="150"  Margin="5 0"  VerticalContentAlignment="Center" x:Name="CBxSort">
                 <ComboBoxItem Content="Без сортировки"/>
                 <ComboBoxItem Content="Сначала недорогие"/>
                 <ComboBoxItem Content="Сначала дорогие"/>
             </ComboBox>
 
         </StackPanel>
-            <Button Content="Добавить" Padding="10 0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+            <Button Content="Добавить" Padding="10 0" Grid.Row="1" HorizontalAlignment="Right"
                     FontSize="14" Margin="5" x:Name="BtnAdd" Click="BtnAdd_Click"/>
         <ListView x:Name="LVProducts" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemContainerStyle>
@@ -47,9 +47,9 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
@@ -67,14 +67,15 @@
                                 </Image>
                                 <Image Grid.ColumnSpan="2" Source="{Binding TexturePhoto}" Width="200" Height="200"/>
                             </Grid>
-                            <StackPanel Grid.Column="1" Margin="5">
-                                <TextBlock Margin="5">
+                            <DockPanel Grid.Column="1" Margin="5" VerticalAlignment="Center">
+                                <TextBlock Margin="5" TextWrapping="Wrap" TextAlignment="Justify" DockPanel.Dock="Top">
                                     <Run Text="{Binding Name}" FontSize="20" FontFamily="Arial Black"/>
-                                    <Run Text="    "/>
-                                    <Run Text="{Binding Volume, StringFormat={}{0:N3} кг}" FontSize="16" FontFamily="Arial Black"/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding Volume, StringFormat={}{0:N2} кг}" FontSize="16" FontFamily="Arial Black"/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding Description}" FontSize="16"/>
                                 </TextBlock>
-                                <TextBlock Text="{Binding Description}" FontSize="12" FontFamily="Arial Narrow"/>
-                            </StackPanel>
+                            </DockPanel>
                             <TextBlock Text="{Binding Price, StringFormat=C2, ConverterCulture=Ru-ru}" FontSize="20" FontFamily="Arial Black" Grid.Column="2"
                                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                             <StackPanel Grid.Column="3" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center">

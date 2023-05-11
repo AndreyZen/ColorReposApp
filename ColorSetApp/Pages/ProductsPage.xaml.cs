@@ -24,6 +24,7 @@ namespace ColorSetApp.Pages
         public ProductsPage()
         {
             InitializeComponent();
+            UpdateLvSource();
         }
 
         private void ColumnDefinition_MouseEnter(object sender, MouseEventArgs e)
@@ -43,7 +44,15 @@ namespace ColorSetApp.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            LVProducts.ItemsSource = App.Context.Product.ToList();
+            var categories = App.Context.Category.ToList();
+            categories.Insert(0, new Category() { Name = "Все категории" });
+            CBxCategory.ItemsSource = categories;
+            CBxCategory.SelectedIndex = 0;
+
+            var manufacturers = App.Context.Manufacturer.ToList();
+            manufacturers.Insert(0, new Manufacturer() { Name = "Все производители" });
+            CBxManufacturer.ItemsSource = manufacturers;
+            CBxManufacturer.SelectedIndex = 0;
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
@@ -51,7 +60,35 @@ namespace ColorSetApp.Pages
             Product product = (sender as Button).DataContext as Product;
             product.IsActual = !product.IsActual;
             App.Context.SaveChanges();
+        }
 
+        private void UpdateLvSource()
+        {
+            var products = App.Context.Product.ToList();
+
+            if (CBxCategory.SelectedIndex != 0 && CBxCategory.SelectedItem is Category category)
+                products = products.Where(x => x.Category == category).ToList();
+
+            if (CBxManufacturer.SelectedIndex != 0 && CBxManufacturer.SelectedItem is Manufacturer manufacturer)
+                products = products.Where(x => x.Manufacturer == manufacturer).ToList();
+
+            if (!string.IsNullOrWhiteSpace(TBxSearch.Text))
+                products = products.Where(x => x.Name.ToLower().Trim().Contains(TBxSearch.Text.ToLower().Trim())).ToList();
+
+            switch (CBxSort.SelectedIndex)
+            {
+                case 1:
+                    products = products.OrderBy(p => p.Price).ToList();
+                    break;
+                case 2:
+                    products = products.OrderByDescending(p => p.Price).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            if (LVProducts != null)
+                LVProducts.ItemsSource = products;
         }
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
@@ -67,6 +104,21 @@ namespace ColorSetApp.Pages
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Page_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CBxCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateLvSource();
+        }
+
+        private void TBxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateLvSource();
         }
     }
 }
