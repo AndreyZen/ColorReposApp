@@ -24,6 +24,7 @@ namespace ColorSetApp.Pages
         public ProductboxPage()
         {
             InitializeComponent();
+            UpdateLvSource();
         }
 
 
@@ -32,7 +33,7 @@ namespace ColorSetApp.Pages
             var textBox = sender as TextBox;
             if (int.TryParse(textBox.Text, out int count))
             {
-                App.Products.Find(p => p.Product == textBox.DataContext as Product).Count = count;
+                App.Products.Find(p => p == textBox.DataContext as ReceiptProduct).Count = count;
                 UpdateLvSource();
             }
             else
@@ -53,7 +54,7 @@ namespace ColorSetApp.Pages
 
         private void BtnRemouveCount_Click(object sender, RoutedEventArgs e)
         {
-            var product = App.Products.Find(p => p.Product == (sender as Button).DataContext as Product);
+            var product = App.Products.Find(p => p == (sender as Button).DataContext as ReceiptProduct);
             if (product.Count > 1)
                 product.Count--;
             else
@@ -61,14 +62,14 @@ namespace ColorSetApp.Pages
                 if (MessageBox.Show("Вы действительно хотите удалить продукт из корзины?", "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     App.Products.Remove(product);
-                    UpdateLvSource();
                 }
             }
+            UpdateLvSource();
         }
 
         private void BtnAddCount_Click(object sender, RoutedEventArgs e)
         {
-            App.Products.Find(p => p.Product == (sender as Button).DataContext as Product).Count++;
+            App.Products.Find(p => p == (sender as Button).DataContext as ReceiptProduct).Count++;
             UpdateLvSource();
         }
 
@@ -91,7 +92,7 @@ namespace ColorSetApp.Pages
                 {
                     App.Context.SaveChanges();
 
-                    if(MessageBox.Show("Данные успешно сохранены, хотите распечатать чек сейчас?", "Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                    if (MessageBox.Show("Данные успешно сохранены, хотите распечатать чек сейчас?", "Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question)
                         == MessageBoxResult.Yes)
                     {
                         //ToDo: Метод печати чека
@@ -110,7 +111,7 @@ namespace ColorSetApp.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if(App.Products.Count > 0)
+            if (App.Products.Count > 0)
             {
                 LvProduct.Visibility = Visibility.Visible;
                 BtnSave.Visibility = Visibility.Visible;

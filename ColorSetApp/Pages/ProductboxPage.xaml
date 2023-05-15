@@ -33,30 +33,30 @@
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <Image>
+                            <Image Height="200">
                                 <Image.Source>
-                                    <Binding Path="PreviewPhoto">
+                                    <Binding Path="Product.PreviewPhoto">
                                         <Binding.TargetNullValue>
-                                            <ImageSource>..\Res\Images\no_photo.png</ImageSource>
+                                            <ImageSource>..\Res\no_photo.png</ImageSource>
                                         </Binding.TargetNullValue>
                                     </Binding>
                                 </Image.Source>
                             </Image>
 
                             <TextBlock Grid.Column="1">
-                                <Run Text="{Binding Name}"/>
+                                <Run Text="{Binding Product.Name}"/>
                                 <Run Text=" "/>
-                                <Run Text="{Binding Manufacturer.Name}"/>
+                                <Run Text="{Binding Product.Manufacturer.Name}"/>
                                 <LineBreak/>
-                                <Run Text="{Binding Description}"/>
+                                <Run Text="{Binding Product.Description}"/>
                                 <LineBreak/>
-                                <Run Text="{Binding Price, StringFormat=C, ConverterCulture=ru-Ru}"/>
+                                <Run Text="{Binding Product.Price, StringFormat=C, ConverterCulture=ru-Ru}"/>
                             </TextBlock>
 
-                            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                                 <Button FontFamily="Segoe MDL2 Assets" Content="&#xE710;"
                                         x:Name="BtnRemouveCount" Click="BtnRemouveCount_Click"/>
-                                <TextBox x:Name="TbCount" TextChanged="TbCount_TextChanged"/>
+                                <TextBox x:Name="TbCount" TextChanged="TbCount_TextChanged" Margin="5 0" Text="{Binding Count}"/>
                                 <Button FontFamily="Segoe MDL2 Assets" Content="&#xE710;"
                                         x:Name="BtnAddCount" Click="BtnAddCount_Click"/>
                             </StackPanel>
