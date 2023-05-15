@@ -18,6 +18,7 @@ namespace ColorSetApp.Entities
         public ColorBaseEntities()
             : base("name=ColorBaseEntities")
         {
+            Database.CreateIfNotExists();
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

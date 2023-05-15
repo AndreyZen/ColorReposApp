@@ -8,6 +8,6 @@ namespace ColorSetApp.Entities
 {
     public partial class User
     {
-        public string FullName { get => FirstName + " " + LastName + " " + Patroniumic;}
+        public string FullName { get => LastName + " " + FirstName + " " + Patroniumic;}
     }
 }
