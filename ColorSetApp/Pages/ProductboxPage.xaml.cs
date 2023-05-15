@@ -24,6 +24,7 @@ namespace ColorSetApp.Pages
         public ProductboxPage()
         {
             InitializeComponent();
+            UpdateLvSource();
         }
 
 
@@ -32,11 +33,7 @@ namespace ColorSetApp.Pages
             var textBox = sender as TextBox;
             if (int.TryParse(textBox.Text, out int count))
             {
-                if (count != 0)
-                    App.Products.Find(p => p.Product == textBox.DataContext as Product).Count = count;
-                else
-                    App.Products.Remove(App.Products.Find(p => p.Product == textBox.DataContext as Product));
-
+                App.Products.Find(p => p == textBox.DataContext as ReceiptProduct).Count = count;
                 UpdateLvSource();
             }
             else
@@ -57,7 +54,7 @@ namespace ColorSetApp.Pages
 
         private void BtnRemouveCount_Click(object sender, RoutedEventArgs e)
         {
-            var product = App.Products.Find(p => p.Product == (sender as Button).DataContext as Product);
+            var product = App.Products.Find(p => p == (sender as Button).DataContext as ReceiptProduct);
             if (product.Count > 1)
                 product.Count--;
             else
@@ -66,14 +63,14 @@ namespace ColorSetApp.Pages
                     "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     App.Products.Remove(product);
-                    UpdateLvSource();
                 }
             }
+            UpdateLvSource();
         }
 
         private void BtnAddCount_Click(object sender, RoutedEventArgs e)
         {
-            App.Products.Find(p => p.Product == (sender as Button).DataContext as Product).Count++;
+            App.Products.Find(p => p == (sender as Button).DataContext as ReceiptProduct).Count++;
             UpdateLvSource();
         }
 
