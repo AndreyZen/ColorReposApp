@@ -32,6 +32,6 @@ namespace ColorSetApp
         }
         public static Entities.ColorBaseEntities Context { get; } = new Entities.ColorBaseEntities();
         public static Entities.User CurrentUser { get; set; }
-        public static List<ReceiptProduct> Products { get; set; }
+        public static List<ReceiptProduct> Products { get; set; } = new List<ReceiptProduct>();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColorSetApp.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,104 @@ namespace ColorSetApp.Pages
         public ProductboxPage()
         {
             InitializeComponent();
+        }
+
+
+        private void TbCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (int.TryParse(textBox.Text, out int count))
+            {
+                App.Products.Find(p => p.Product == textBox.DataContext as Product).Count = count;
+                UpdateLvSource();
+            }
+            else
+            {
+                MessageBox.Show("Введено не корректное значение!", "Ошибка преобразования", MessageBoxButton.OK, MessageBoxImage.Error);
+                textBox.Text = "0";
+            }
+        }
+
+        private void UpdateLvSource()
+        {
+            if (LvProduct != null)
+            {
+                LvProduct.ItemsSource = null;
+                LvProduct.ItemsSource = App.Products;
+            }
+        }
+
+        private void BtnRemouveCount_Click(object sender, RoutedEventArgs e)
+        {
+            var product = App.Products.Find(p => p.Product == (sender as Button).DataContext as Product);
+            if (product.Count > 1)
+                product.Count--;
+            else
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить продукт из корзины?", "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    App.Products.Remove(product);
+                    UpdateLvSource();
+                }
+            }
+        }
+
+        private void BtnAddCount_Click(object sender, RoutedEventArgs e)
+        {
+            App.Products.Find(p => p.Product == (sender as Button).DataContext as Product).Count++;
+            UpdateLvSource();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (App.Products.Count > 0)
+            {
+                var receipt = new Receipt()
+                {
+                    Date = DateTime.Now,
+                    User = App.CurrentUser
+                };
+                App.Context.Receipt.Add(receipt);
+
+                foreach (var product in App.Products)
+                    product.Receipt = receipt;
+
+                App.Context.ReceiptProduct.AddRange(App.Products);
+                try
+                {
+                    App.Context.SaveChanges();
+
+                    if(MessageBox.Show("Данные успешно сохранены, хотите распечатать чек сейчас?", "Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                        == MessageBoxResult.Yes)
+                    {
+                        //ToDo: Метод печати чека
+                    }
+                    //ToDo: Переход на страницу промотнра сохраненных данных
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при сохранении данных\n" + ex.Message, "Сохранение", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+                MessageBox.Show("Корзина пуста, нечего сохранять", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(App.Products.Count > 0)
+            {
+                LvProduct.Visibility = Visibility.Visible;
+                BtnSave.Visibility = Visibility.Visible;
+                TbNullValue.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                LvProduct.Visibility = Visibility.Collapsed;
+                BtnSave.Visibility = Visibility.Collapsed;
+                TbNullValue.Visibility = Visibility.Visible;
+            }
         }
     }
 }
