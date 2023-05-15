@@ -15,11 +15,8 @@
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="1">
-            <TextBox x:Name="TbUserName" TextChanged="TbUserName_TextChanged" VerticalAlignment="Center" DockPanel.Dock="Right" Width="200"/>
-            <TextBlock Text="Поиск: " VerticalAlignment="Center" DockPanel.Dock="Right"/>
-            <PasswordBoxWatcher Width="150" 
-                                />
-            <PasswordBox Width="123" PasswordBoxEx.Attach="False"/>
+            <TextBlock Text="Поиск: " VerticalAlignment="Center" DockPanel.Dock="Left"/>
+            <TextBox x:Name="TbUserName" TextChanged="TbUserName_TextChanged" VerticalAlignment="Center" DockPanel.Dock="Left" Width="200"/>
             <Button Content="Сохранить" HorizontalAlignment="Right"  Padding="10 0" Margin="10" x:Name="BtnSave" Click="BtnSave_Click"/>
         </DockPanel>
 
@@ -29,8 +26,20 @@
                 <DataGridTextColumn Width="2*" Header="Имя" Binding="{Binding FirstName, Mode=TwoWay}"/>
                 <DataGridTextColumn Width="2*" Header="Фамилия" Binding="{Binding LastName, Mode=TwoWay}"/>
                 <DataGridTextColumn Width="2*" Header="Отчество" Binding="{Binding Patroniumic, Mode=TwoWay}"/>
-                <DataGridCheckBoxColumn Width="*" Header="Администратор" Binding="{Binding IsAdmin, Mode=TwoWay}"/>
-                <DataGridCheckBoxColumn Width="*" Header="Активирован" Binding="{Binding IsActive, Mode=TwoWay}"/>
+                <DataGridTemplateColumn Width="2*" Header="Администратор" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsAdmin, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="Активирован" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsActive, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
