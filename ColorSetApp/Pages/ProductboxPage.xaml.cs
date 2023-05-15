@@ -59,8 +59,7 @@ namespace ColorSetApp.Pages
                 product.Count--;
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить продукт из корзины?",
-                    "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить продукт из корзины?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     App.Products.Remove(product);
                 }

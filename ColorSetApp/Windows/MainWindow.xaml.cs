@@ -65,5 +65,10 @@ namespace ColorSetApp.Windows
         {
             MainFrame.Navigate(new ProductboxPage());
         }
+
+        private void BtnReceipt_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ReceiptPage());
+        }
     }
 }
