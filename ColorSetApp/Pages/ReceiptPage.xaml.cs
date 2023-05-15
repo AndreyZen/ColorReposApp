@@ -34,7 +34,7 @@ namespace ColorSetApp.Pages
 
         private void BtnReport_Click(object sender, RoutedEventArgs e)
         {
-
+            //ToDo Печать чека
         }
     }
 }
