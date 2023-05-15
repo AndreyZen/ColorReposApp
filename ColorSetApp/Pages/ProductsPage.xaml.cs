@@ -90,13 +90,18 @@ namespace ColorSetApp.Pages
         {
             //ToDo: Не доделано
             var product = (sender as Button).DataContext as Product;
-            if(product != null)
+            if (product != null)
             {
-                if(App.Products.FirstOrDefault(p=>p.Product == product) == null)
-                    App.Products.Add(new ReceiptProduct { Product = product });
+                if (App.Products.FirstOrDefault(p => p.Product == product) == null)
+                    App.Products.Add(new ReceiptProduct 
+                    { 
+                        Product = product,
+                        Count =1
+                    });
             }
             else
                 MessageBox.Show("Непредвиденная ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            UpdateLvSource();
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -128,6 +133,24 @@ namespace ColorSetApp.Pages
         private void TBxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateLvSource();
+        }
+
+        private void BtnDeleteCount_Click(object sender, RoutedEventArgs e)
+        {
+            var product = (sender as Button).DataContext as Product;
+
+            App.Products.FirstOrDefault(p => p.Product.Id == product.Id).Count--;
+            UpdateLvSource();
+
+        }
+
+        private void BtnAddCount_Click(object sender, RoutedEventArgs e)
+        {
+            var product = (sender as Button).DataContext as Product;
+
+            App.Products.FirstOrDefault(p => p.Product.Id == product.Id).Count++;
+            UpdateLvSource();
+
         }
     }
 }
