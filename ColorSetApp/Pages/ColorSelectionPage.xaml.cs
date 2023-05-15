@@ -70,5 +70,20 @@ namespace ColorSetApp.Pages
         {
             return (product.Expenditure.Value * (decimal)area) / product.Volume.Value;
         }
+
+        private void CbPrimer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BaseImg.DataContext = (CbPrimer.SelectedItem as Product).TexturePhoto;
+        }
+
+        private void CbColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainImg.DataContext = (CbColor.SelectedItem as Product).TexturePhoto;
+        }
+
+        private void CbPolish_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MetallImg.DataContext = (CbPolish.SelectedItem as Product).TexturePhoto;
+        }
     }
 }

@@ -18,17 +18,23 @@
 
         <Border BorderBrush="Black" BorderThickness="1" Margin="10">
             <Grid>
-                <Grid.Background>
-                    <SolidColorBrush x:Name="BaseColor" Color="Black" Opacity="0.9"/>
-                </Grid.Background>
-                <Image x:Name="MetallImg" Source="../res/red_color.jpg" Stretch="Fill" Opacity="0.7"/>
-                <Image x:Name="MainImg" Source="../res/metall_texture.jpg" Stretch="Fill" Opacity="0.3"/>
+                <Image x:Name="BaseImg" Stretch="Fill">
+                    <Image.Source>
+                        <Binding Path="">
+                            <Binding.TargetNullValue>
+                                <ImageSource>..\Res\no_photo.png</ImageSource>
+                            </Binding.TargetNullValue>
+                        </Binding>
+                    </Image.Source>
+                </Image>
+                <Image Source="{Binding }" x:Name="MetallImg" Stretch="Fill" Opacity="0.7"/>
+                <Image Source="{Binding }" x:Name="MainImg" Stretch="Fill" Opacity="0.3"/>
             </Grid>
         </Border>
 
         <StackPanel Grid.Column="1" Margin="10">
             <TextBlock Text="Грунт"/>
-            <ComboBox x:Name="CbPrimer" HorizontalContentAlignment="Left">
+            <ComboBox x:Name="CbPrimer" HorizontalContentAlignment="Left" SelectionChanged="CbPrimer_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Border>
@@ -60,7 +66,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
             <TextBlock Text="Основной цвет"/>
-            <ComboBox x:Name="CbColor" HorizontalContentAlignment="Left">
+            <ComboBox x:Name="CbColor" HorizontalContentAlignment="Left" SelectionChanged="CbColor_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Border>
@@ -95,7 +101,7 @@
             <TextBlock Text="Лак"/>
 
 
-            <ComboBox x:Name="CbPolish" HorizontalContentAlignment="Left">
+            <ComboBox x:Name="CbPolish" HorizontalContentAlignment="Left" SelectionChanged="CbPolish_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <Border>
