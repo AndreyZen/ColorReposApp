@@ -54,7 +54,7 @@
                             </TextBlock>
 
                             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                <Button FontFamily="Segoe MDL2 Assets" Content="&#xE710;"
+                                <Button FontFamily="Segoe MDL2 Assets" Content="&#xE738;"
                                         x:Name="BtnRemouveCount" Click="BtnRemouveCount_Click"/>
                                 <TextBox x:Name="TbCount" TextChanged="TbCount_TextChanged"/>
                                 <Button FontFamily="Segoe MDL2 Assets" Content="&#xE710;"

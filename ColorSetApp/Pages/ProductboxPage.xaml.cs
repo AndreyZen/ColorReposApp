@@ -32,13 +32,17 @@ namespace ColorSetApp.Pages
             var textBox = sender as TextBox;
             if (int.TryParse(textBox.Text, out int count))
             {
-                App.Products.Find(p => p.Product == textBox.DataContext as Product).Count = count;
+                if (count != 0)
+                    App.Products.Find(p => p.Product == textBox.DataContext as Product).Count = count;
+                else
+                    App.Products.Remove(App.Products.Find(p => p.Product == textBox.DataContext as Product));
+
                 UpdateLvSource();
             }
             else
             {
                 MessageBox.Show("Введено не корректное значение!", "Ошибка преобразования", MessageBoxButton.OK, MessageBoxImage.Error);
-                textBox.Text = "0";
+                textBox.Text = "1";
             }
         }
 
@@ -58,7 +62,8 @@ namespace ColorSetApp.Pages
                 product.Count--;
             else
             {
-                if (MessageBox.Show("Вы действительно хотите удалить продукт из корзины?", "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы действительно хотите удалить продукт из корзины?",
+                    "Удаление", MessageBoxButton.YesNoCancel, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     App.Products.Remove(product);
                     UpdateLvSource();
@@ -91,7 +96,7 @@ namespace ColorSetApp.Pages
                 {
                     App.Context.SaveChanges();
 
-                    if(MessageBox.Show("Данные успешно сохранены, хотите распечатать чек сейчас?", "Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                    if (MessageBox.Show("Данные успешно сохранены, хотите распечатать чек сейчас?", "Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question)
                         == MessageBoxResult.Yes)
                     {
                         //ToDo: Метод печати чека
@@ -110,7 +115,7 @@ namespace ColorSetApp.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if(App.Products.Count > 0)
+            if (App.Products.Count > 0)
             {
                 LvProduct.Visibility = Visibility.Visible;
                 BtnSave.Visibility = Visibility.Visible;
