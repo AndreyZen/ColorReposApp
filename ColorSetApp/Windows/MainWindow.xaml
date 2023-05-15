@@ -7,7 +7,7 @@
         xmlns:themes="clr-namespace:StyledWindow.WPF.Themes;assembly=StyledWindow.WPF"
         
          mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800" FontSize="16" FontFamily="Arial Narrow">
+        Title="MainWindow" Height="600" Width="1200" MinHeight="600" MinWidth="1200" FontSize="16" FontFamily="Arial Narrow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

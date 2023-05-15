@@ -26,7 +26,7 @@
             </ComboBox>
 
         </StackPanel>
-            <Button Content="Добавить" Padding="10 0" Grid.Row="1" HorizontalAlignment="Right"
+        <Button Content="Добавить" Padding="10 0" Grid.Row="1" HorizontalAlignment="Right"
                     FontSize="14" Margin="5" x:Name="BtnAdd" Click="BtnAdd_Click"/>
         <ListView x:Name="LVProducts" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.ItemContainerStyle>
@@ -56,7 +56,7 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <Image Grid.ColumnSpan="2" Stretch="Fill" Source="{Binding TexturePhoto}" Width="200" Height="200"/>
                                 <Image Grid.ColumnSpan="2" Stretch="Fill" Width="200" Height="200">
                                     <Image.Source>
@@ -80,7 +80,19 @@
                             <TextBlock Text="{Binding Price, StringFormat=C2, ConverterCulture=Ru-ru}" FontSize="20" FontFamily="Arial Black" Grid.Column="2"
                                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
                             <StackPanel Grid.Column="3" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                                <Button Content="Добавить в корзину" Margin="5" Padding="10 0" x:Name="BtnAddBuy" Click="BtnAddBuy_Click"/>
+                                <Grid>
+                                    <Button Visibility="{Binding VisibilityButtonCountInvers}" Content="Добавить в корзину" Margin="5" Padding="10 0" x:Name="BtnAddBuy" Click="BtnAddBuy_Click"/>
+                                    <Grid Margin="5"  Visibility="{Binding VisibilityButtonCount}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="50"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Grid.Column="0" Content="-" x:Name="BtnDeleteCount" Click="BtnDeleteCount_Click"/>
+                                        <TextBox FontSize="14" Text="{Binding CountOnBasket, Mode=TwoWay}" TextAlignment="Center" Grid.Column="1"/>
+                                        <Button Grid.Column="2" Content="+" x:Name="BtnAddCount" Click="BtnAddCount_Click"/>
+                                    </Grid>
+                                </Grid>
                                 <Button Content="Редактировать" Margin="5" Padding="10 0" x:Name="BtnEdit" Click="BtnEdit_Click"/>
                                 <Button Content="{Binding BtnContent}" Margin="5" Padding="10 0" x:Name="BtnDelete" Click="BtnDelete_Click"/>
                             </StackPanel>
