@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800" Loaded="Page_Loaded"
       Title="ColorSelectionPage" FontSize="16" FontFamily="Arial Narrow">
     <Page.Resources>
-        <Style TargetType="ComboBox">
+        <!--<Style TargetType="ComboBox">
             <Setter Property="Margin" Value="0 5"/>
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -41,7 +41,7 @@
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -61,12 +61,104 @@
 
         <StackPanel Grid.Column="1" Margin="10">
             <TextBlock Text="Грунт"/>
-            <ComboBox x:Name="CbPrimer"/>
+            <ComboBox x:Name="CbPrimer">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Width="50" Height="50" Stretch="Fill" Margin="5">
+                                    <Image.Source>
+                                        <Binding Path="PreviewPhoto">
+                                            <Binding.TargetNullValue>
+                                                <ImageSource>../res/red_color.jpg</ImageSource>
+                                            </Binding.TargetNullValue>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
+
+                                <TextBlock Grid.Column="1" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                    <Run Text="{Binding Name}" FontFamily="Arial Black"/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding Manufacturer.Name}"/>
+                                    <Run Text="{Binding Price, StringFormat=C, ConverterCulture=ru-Ru}"/>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Text="Основной цвет"/>
-            <ComboBox x:Name="CbColor"/>
+            <ComboBox x:Name="CbColor">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Width="50" Height="50" Stretch="Fill" Margin="5">
+                                    <Image.Source>
+                                        <Binding Path="PreviewPhoto">
+                                            <Binding.TargetNullValue>
+                                                <ImageSource>../res/red_color.jpg</ImageSource>
+                                            </Binding.TargetNullValue>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
+
+                                <TextBlock Grid.Column="1" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                    <Run Text="{Binding Name}" FontFamily="Arial Black"/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding Manufacturer.Name}"/>
+                                    <Run Text="{Binding Price, StringFormat=C, ConverterCulture=ru-Ru}"/>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Slider x:Name="SliderColor" Minimum="0" Maximum="1" Value="{Binding ElementName=MainImg, Path=Opacity}"/>
             <TextBlock Text="Лак"/>
-            <ComboBox x:Name="CbPolish"/>
+
+
+            <ComboBox x:Name="CbPolish">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Width="50" Height="50" Stretch="Fill" Margin="5">
+                                    <Image.Source>
+                                        <Binding Path="PreviewPhoto">
+                                            <Binding.TargetNullValue>
+                                                <ImageSource>../res/red_color.jpg</ImageSource>
+                                            </Binding.TargetNullValue>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
+
+                                <TextBlock Grid.Column="1" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                    <Run Text="{Binding Name}" FontFamily="Arial Black"/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding Manufacturer.Name}"/>
+                                    <Run Text="{Binding Price, StringFormat=C, ConverterCulture=ru-Ru}"/>
+                                </TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Slider x:Name="SliderPolish" Minimum="0" Maximum="1" Value="{Binding ElementName=MetallImg, Path=Opacity}"/>
             <TextBlock Text="Площадь поверхности"/>
             <TextBox x:Name="TbArea"/>
