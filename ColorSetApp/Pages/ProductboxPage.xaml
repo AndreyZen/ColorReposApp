@@ -9,6 +9,49 @@
       Title="ProductboxPage">
 
     <Grid>
-        
+        <ListView>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image>
+                                <Image.Source>
+                                    <Binding Path="PreviewPhoto">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>..\Res\Images\no_photo.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+
+                            <TextBlock Grid.Column="1">
+                                <Run Text="{Binding Name}"/>
+                                <Run Text=" "/>
+                                <Run Text="{Binding Manufacturer.Name}"/>
+                                <LineBreak/>
+                                <Run Text="{Binding Description}"/>
+                                <LineBreak/>
+                                <Run Text="{Binding Price, StringFormat=C, ConverterCulture=ru-Ru}"/>
+                            </TextBlock>
+
+                            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                <Button Content=""/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

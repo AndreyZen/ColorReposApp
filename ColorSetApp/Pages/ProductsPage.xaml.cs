@@ -88,7 +88,15 @@ namespace ColorSetApp.Pages
 
         private void BtnAddBuy_Click(object sender, RoutedEventArgs e)
         {
-            //ToDo: Добавление продукта в корзину
+            //ToDo: Не доделано
+            var product = (sender as Button).DataContext as Product;
+            if(product != null)
+            {
+                if(App.Products.FirstOrDefault(p=>p.Product == product) == null)
+                    App.Products.Add(new ReceiptProduct { Product = product });
+            }
+            else
+                MessageBox.Show("Непредвиденная ошибка", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
