@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ColorSetApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ReceiptPage" FontFamily="Arial Narrow" FontSize="14">
+      Title="ReceiptPage" FontSize="14">
 
     <Grid>
         <Grid.RowDefinitions>

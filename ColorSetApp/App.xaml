@@ -12,6 +12,8 @@
                 <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="OrangeRed" SecondaryColor="DarkGreen" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="MainFont">pack://application:,,,/Res/#Comic Sans MS</FontFamily>
+            <FontFamily x:Key="Montserrat">pack://application:,,,/Res/#Montserrat</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

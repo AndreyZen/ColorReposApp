@@ -6,17 +6,22 @@
       xmlns:local="clr-namespace:ColorSetApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AuthPage" FontSize="16" FontFamily="Arial Narrow">
+      Title="AuthPage" FontSize="16">
 
     <Grid>
-        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"
-                BorderBrush="Black" BorderThickness="1">
-            <StackPanel>
-                <TextBlock Text="Код сотрудника" FontFamily="Arial Black"
+        <Viewbox MaxHeight="170">
+            <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"
+                BorderBrush="Black" BorderThickness="1" CornerRadius="10">
+                <Border.Background>
+                    <SolidColorBrush Color="Gray" Opacity="0.2"/>
+                </Border.Background>
+                <StackPanel>
+                    <TextBlock Text="Код сотрудника" 
                            FontSize="16" HorizontalAlignment="Center" Margin="5"/>
-                <TextBox Width="200" x:Name="TbCode"/>
-                <Button Margin="0 5" Content="Войти" x:Name="BtnLogin" Click="BtnLogin_Click"/>
-            </StackPanel>
-        </Border>
+                    <TextBox Width="200" x:Name="TbCode" TextAlignment="Center"/>
+                    <Button Margin="0 5" Content="Войти" x:Name="BtnLogin" Click="BtnLogin_Click"/>
+                </StackPanel>
+            </Border>
+        </Viewbox>
     </Grid>
 </Page>

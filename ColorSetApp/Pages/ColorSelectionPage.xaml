@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ColorSetApp.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800" Loaded="Page_Loaded"
-      Title="ColorSelectionPage" FontSize="16" FontFamily="Arial Narrow">
+      Title="ColorSelectionPage" FontSize="16">
     <Page.Resources>
        
     </Page.Resources>

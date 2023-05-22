@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>wheel.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -252,6 +255,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Res\Montserrat.ttf" />
+    <Resource Include="Res\Comic Sans MS.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -274,6 +279,8 @@
       <DependentUpon>DataBaseModel.edmx</DependentUpon>
       <LastGenOutput>DataBaseModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="wheel.ico" />
+    <Resource Include="Res\wheel.ico" />
     <Resource Include="Res\selectphoto.png" />
     <Resource Include="Res\no_photo.png" />
   </ItemGroup>

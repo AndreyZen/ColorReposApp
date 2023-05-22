@@ -5,30 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorSetApp"
         xmlns:themes="clr-namespace:StyledWindow.WPF.Themes;assembly=StyledWindow.WPF"
-        
-         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200" MinHeight="600" MinWidth="1200" FontSize="16" FontFamily="Arial Narrow">
+        mc:Ignorable="d" FontFamily="{StaticResource Montserrat}"
+        Title="ColorSetApp" Height="600" Width="1200" MinHeight="600" MinWidth="1200" FontSize="16" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DockPanel Visibility="Collapsed" x:Name="DpUpBar" Margin="10 5">
-            <TextBlock x:Name="TbUserName" VerticalAlignment="Center" DockPanel.Dock="Left" FontFamily="Arial Black"/>
-            <Button Content="Выход" x:Name="BtnBack" Click="BtnBack_Click" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+        <Grid>
+            <Grid.Background>
+                <SolidColorBrush Color="Gray" Opacity="0.2"/>
+            </Grid.Background>
+            <DockPanel Visibility="Collapsed" x:Name="DpUpBar" Margin="10 5">
+                <TextBlock x:Name="TbUserName" VerticalAlignment="Center" DockPanel.Dock="Left"     />
+                <Button Content="Выход" x:Name="BtnBack" Click="BtnBack_Click" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0"/>
-            <Button Content="Пользователи" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                <Button Content="Пользователи" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0" x:Name="BtnUsers" Click="BtnUsers_Click"/>
-            <Button Content="Продукты" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                <Button Content="Продукты" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0" x:Name="BtnProducts" Click="BtnProducts_Click"/>
-            <Button Content="Подбор" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                <Button Content="Подбор" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0" x:Name="BtnSelection" Click="BtnSelection_Click"/>
-            <Button Content="Корзина" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                <Button Content="Корзина" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0" x:Name="BtnProductBox" Click="BtnProductBox_Click"/>
-            <Button Content="Заказы" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                <Button Content="Заказы" Margin="5" DockPanel.Dock="Right" HorizontalAlignment="Right"
                     Padding="10 0" x:Name="BtnReceipt" Click="BtnReceipt_Click"/>
-        </DockPanel>
+            </DockPanel>
+        </Grid>
 
         <Frame Grid.Row="1" Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered"/>
     </Grid>

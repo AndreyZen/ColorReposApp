@@ -48,7 +48,13 @@ namespace ColorSetApp.Pages
             if (LvProduct != null)
             {
                 LvProduct.ItemsSource = null;
-                LvProduct.ItemsSource = App.Products;
+                if (App.Products.Count != 0)
+                {
+                    TbNullValue.Visibility = Visibility.Collapsed;
+                    LvProduct.ItemsSource = App.Products;
+                }
+                else
+                    TbNullValue.Visibility = Visibility.Visible;
             }
         }
 
