@@ -86,14 +86,11 @@ namespace ColorSetApp.Pages
                 var receipt = new Receipt()
                 {
                     Date = DateTime.Now,
-                    User = App.CurrentUser
+                    User = App.CurrentUser,
+                    ReceiptProduct = App.Products
                 };
                 App.Context.Receipt.Add(receipt);
 
-                foreach (var product in App.Products)
-                    product.Receipt = receipt;
-
-                App.Context.ReceiptProduct.AddRange(App.Products);
                 try
                 {
                     App.Context.SaveChanges();
@@ -101,9 +98,9 @@ namespace ColorSetApp.Pages
                     if (MessageBox.Show("Данные успешно сохранены, хотите распечатать чек сейчас?", "Сохранение", MessageBoxButton.YesNo, MessageBoxImage.Question)
                         == MessageBoxResult.Yes)
                     {
-                        //ToDo: Метод печати чека
+                        NavigationService.Navigate(new ReportPage(receipt));
                     }
-                    //ToDo: Переход на страницу промотнра сохраненных данных
+                    NavigationService.Navigate(new ReceiptPage());
                 }
                 catch (Exception ex)
                 {

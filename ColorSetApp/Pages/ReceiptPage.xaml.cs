@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColorSetApp.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace ColorSetApp.Pages
         private void BtnReport_Click(object sender, RoutedEventArgs e)
         {
             //ToDo Печать чека
+            NavigationService.Navigate(new ReportPage((sender as Button).DataContext as Receipt));
         }
     }
 }
