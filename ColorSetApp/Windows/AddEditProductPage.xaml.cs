@@ -53,7 +53,7 @@ namespace ColorSetApp.Windows
         {
             OpenFileDialog ofd = new OpenFileDialog()
             {
-                Filter = "Images | *.png; *.jpg;"
+                Filter = "Images |*.png;*.jpg;*.jpeg;"
             };
             if (ofd.ShowDialog() == true)
             {
@@ -66,7 +66,7 @@ namespace ColorSetApp.Windows
         {
             OpenFileDialog ofd = new OpenFileDialog()
             {
-                Filter = "Images | *.png; *.jpg;"
+                Filter = "Images |*.png;*.jpg;*.jpeg;"
             };
             if (ofd.ShowDialog() == true)
             {

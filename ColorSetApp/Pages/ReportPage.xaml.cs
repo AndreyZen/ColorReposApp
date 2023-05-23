@@ -185,7 +185,13 @@ namespace ColorSetApp.Pages
                 "</body>\r\n\r\n" +
                 "</html>\r\n";
 
-            WBrowserReport.Navigate(html);
+            WBrowserReport.NavigateToString(html);
+        }
+
+        private void BtnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            mshtml.IHTMLDocument2 doc = WBrowserReport.Document as mshtml.IHTMLDocument2;
+            doc.execCommand("Print", true, null);
         }
     }
 }

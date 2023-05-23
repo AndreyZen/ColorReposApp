@@ -53,6 +53,9 @@ namespace ColorSetApp.Pages
         {
             var products = App.Context.Product.ToList();
 
+            if (!App.CurrentUser.IsAdmin)
+                products = products.FindAll(p => p.IsActual).ToList();
+
             if (CBxCategory.SelectedIndex != 0 && CBxCategory.SelectedItem is Category category)
                 products = products.Where(x => x.Category == category).ToList();
 

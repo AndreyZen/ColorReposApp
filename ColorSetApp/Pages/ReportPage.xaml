@@ -10,9 +10,12 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <WebBrowser Grid.Row="1" x:Name="WBrowserReport"/>
+        
+        <WebBrowser  x:Name="WBrowserReport"/>
+
+        <Button Content="Печать" Grid.Row="1" x:Name="BtnPrint" Click="BtnPrint_Click"/>
     </Grid>
 </Page>
